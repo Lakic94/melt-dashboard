@@ -30,7 +30,9 @@ export async function middleware(req: NextRequest) {
 
   // Protect /dashboard/* — require auth session
   if (pathname.startsWith("/dashboard")) {
-    const sessionCookie = req.cookies.get("better-auth.session_token");
+    const sessionCookie =
+      req.cookies.get("better-auth.session_token") ||
+      req.cookies.get("__Secure-better-auth.session_token");
     if (!sessionCookie?.value) {
       return NextResponse.redirect(new URL("/login", req.url));
     }

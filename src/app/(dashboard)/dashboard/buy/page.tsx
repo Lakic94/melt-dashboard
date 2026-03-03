@@ -28,6 +28,7 @@ function BuyProductContent() {
       }
     } catch {
       alert("Something went wrong. Please try again.");
+      
     } finally {
       setLoadingProduct(null);
     }

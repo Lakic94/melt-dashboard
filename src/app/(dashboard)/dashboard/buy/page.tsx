@@ -55,7 +55,7 @@ function BuyProductContent() {
             <CardHeader>
               <div className="flex items-start justify-between">
                 <CardTitle className="text-lg">{product.name}</CardTitle>
-                <Badge variant="secondary">{product.priceLabel}</Badge>
+                <Badge variant="secondary">${product.price}</Badge>
               </div>
               <CardDescription>{product.description}</CardDescription>
             </CardHeader>

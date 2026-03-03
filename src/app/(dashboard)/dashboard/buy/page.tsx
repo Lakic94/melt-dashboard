@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { products } from "@/lib/stripe/prices";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-export default function BuyProductTab() {
+function BuyProductContent() {
   const searchParams = useSearchParams();
   const checkoutCancelled = searchParams.get("checkout") === "cancelled";
   const [loadingProduct, setLoadingProduct] = useState<string | null>(null);
@@ -93,5 +93,13 @@ export default function BuyProductTab() {
         ))}
       </div>
     </div>
+  );
+}
+
+export default function BuyProductTab() {
+  return (
+    <Suspense>
+      <BuyProductContent />
+    </Suspense>
   );
 }

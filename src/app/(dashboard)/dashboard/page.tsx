@@ -1,10 +1,11 @@
 "use client";
 
+import { Suspense } from "react";
 import { useSession } from "@/lib/auth/auth-client";
 import { useSearchParams } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
-export default function InvitationTab() {
+function InvitationContent() {
   const { data: session } = useSession();
   const searchParams = useSearchParams();
   const checkoutSuccess = searchParams.get("checkout") === "success";
@@ -13,7 +14,7 @@ export default function InvitationTab() {
     <div className="space-y-6">
       {checkoutSuccess && (
         <div className="rounded-md bg-green-50 border border-green-200 p-4 text-sm text-green-800">
-          Your subscription has been activated! Thank you for joining MELT.
+          Your purchase was successful! Thank you for joining MELT.
         </div>
       )}
       <Card>
@@ -42,7 +43,7 @@ export default function InvitationTab() {
             </div>
             <h3 className="mb-2 text-lg font-semibold">You&apos;re Invited</h3>
             <p className="text-sm text-muted-foreground">
-              As a MELT member, you have access to our exclusive subscription products
+              As a MELT member, you have access to our exclusive products
               and can invite others through your personal referral code.
             </p>
           </div>
@@ -56,7 +57,7 @@ export default function InvitationTab() {
           </CardHeader>
           <CardContent>
             <p className="text-sm text-muted-foreground">
-              Head to the <strong>Buy Product</strong> tab to browse and subscribe to MELT products.
+              Head to the <strong>Buy Product</strong> tab to browse MELT products.
             </p>
           </CardContent>
         </Card>
@@ -73,5 +74,13 @@ export default function InvitationTab() {
         </Card>
       </div>
     </div>
+  );
+}
+
+export default function InvitationTab() {
+  return (
+    <Suspense>
+      <InvitationContent />
+    </Suspense>
   );
 }

@@ -1,15 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signUp } from "@/lib/auth/auth-client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { nanoid } from "nanoid";
 
-export default function SignupPage() {
+function SignupContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const refCode = searchParams.get("ref") || "";
@@ -27,7 +26,6 @@ export default function SignupPage() {
     setLoading(true);
 
     try {
-      // Sign up with Better Auth
       const result = await signUp.email({ email, password, name });
 
       if (result.error) {
@@ -36,7 +34,6 @@ export default function SignupPage() {
         return;
       }
 
-      // Create user profile with referral code
       const res = await fetch("/api/auth/setup-profile", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -63,7 +60,7 @@ export default function SignupPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <CardTitle className="text-2xl font-bold">Create your account</CardTitle>
-          <CardDescription>Join MELT and start your subscription</CardDescription>
+          <CardDescription>Join MELT and get started</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -129,5 +126,13 @@ export default function SignupPage() {
         </CardContent>
       </Card>
     </div>
+  );
+}
+
+export default function SignupPage() {
+  return (
+    <Suspense>
+      <SignupContent />
+    </Suspense>
   );
 }

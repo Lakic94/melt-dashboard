@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { Pencil, Check, X } from "lucide-react";
 import dynamic from "next/dynamic";
 
 const ReferralTree = dynamic(() => import("@/components/referral/referral-tree"), {
@@ -25,6 +26,12 @@ export default function ReferralsTab() {
   const [tree, setTree] = useState<TreeNode | null>(null);
   const [copied, setCopied] = useState(false);
   const [loading, setLoading] = useState(true);
+
+  // Edit mode state
+  const [editing, setEditing] = useState(false);
+  const [editValue, setEditValue] = useState("");
+  const [editError, setEditError] = useState("");
+  const [saving, setSaving] = useState(false);
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -72,6 +79,52 @@ export default function ReferralsTab() {
     }
   }
 
+  function startEditing() {
+    setEditValue(referralCode);
+    setEditError("");
+    setEditing(true);
+  }
+
+  function cancelEditing() {
+    setEditing(false);
+    setEditValue("");
+    setEditError("");
+  }
+
+  async function saveCode() {
+    const trimmed = editValue.trim();
+    if (!trimmed || trimmed.length < 2 || trimmed.length > 30) {
+      setEditError("Code must be between 2 and 30 characters");
+      return;
+    }
+
+    setSaving(true);
+    setEditError("");
+
+    try {
+      const res = await fetch("/api/referrals/code", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: trimmed }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setEditError(data.error || "Failed to update code");
+        return;
+      }
+
+      setReferralCode(data.referralCode);
+      setReferralLink(data.referralLink);
+      setEditing(false);
+    } catch {
+      setEditError("Something went wrong. Please try again.");
+    } finally {
+      setSaving(false);
+    }
+  }
+
   const totalReferrals = tree ? countNodes(tree) - 1 : 0;
 
   return (
@@ -83,10 +136,40 @@ export default function ReferralsTab() {
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex items-center gap-2">
-            <Badge variant="secondary" className="px-4 py-2 text-lg font-mono">
-              {loading ? "..." : referralCode}
-            </Badge>
+            {editing ? (
+              <>
+                <Input
+                  value={editValue}
+                  onChange={(e) => setEditValue(e.target.value)}
+                  className="max-w-xs font-mono"
+                  maxLength={30}
+                  autoFocus
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") saveCode();
+                    if (e.key === "Escape") cancelEditing();
+                  }}
+                />
+                <Button variant="ghost" size="icon" onClick={saveCode} disabled={saving}>
+                  <Check className="h-4 w-4" />
+                </Button>
+                <Button variant="ghost" size="icon" onClick={cancelEditing} disabled={saving}>
+                  <X className="h-4 w-4" />
+                </Button>
+              </>
+            ) : (
+              <>
+                <Badge variant="secondary" className="px-4 py-2 text-lg font-mono">
+                  {loading ? "..." : referralCode}
+                </Badge>
+                <Button variant="ghost" size="icon" onClick={startEditing} disabled={loading}>
+                  <Pencil className="h-4 w-4" />
+                </Button>
+              </>
+            )}
           </div>
+          {editError && (
+            <p className="text-sm text-destructive">{editError}</p>
+          )}
           <div className="flex gap-2">
             <Input value={referralLink} readOnly className="font-mono text-sm" />
             <Button variant="outline" onClick={handleCopy} disabled={!referralLink}>

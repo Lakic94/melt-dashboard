@@ -11,12 +11,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 function SignupContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const refCode = searchParams.get("ref") || "";
+  const ref = searchParams.get("ref") || "";
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [referralCode, setReferralCode] = useState(refCode);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -37,7 +36,7 @@ function SignupContent() {
       const res = await fetch("/api/auth/setup-profile", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ referralCode: referralCode || undefined }),
+        body: JSON.stringify({ referralCode: ref || undefined }),
       });
 
       if (!res.ok) {
@@ -56,9 +55,10 @@ function SignupContent() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-4">
-      <Card className="w-full max-w-md">
+    <div className="flex min-h-screen items-center justify-center bg-melt-glacial-ink px-4">
+      <Card className="w-full max-w-md border-0 shadow-xl">
         <CardHeader className="text-center">
+          <img src="/melt_logo.png" alt="MELT Brands" className="mx-auto mb-4 h-8 w-auto" />
           <CardTitle className="text-2xl font-bold">Create your account</CardTitle>
           <CardDescription>Join MELT and get started</CardDescription>
         </CardHeader>
@@ -101,16 +101,6 @@ function SignupContent() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 minLength={8}
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="referral">Referral Code (optional)</Label>
-              <Input
-                id="referral"
-                type="text"
-                placeholder="Enter referral code"
-                value={referralCode}
-                onChange={(e) => setReferralCode(e.target.value)}
               />
             </div>
             <Button type="submit" className="w-full" disabled={loading}>

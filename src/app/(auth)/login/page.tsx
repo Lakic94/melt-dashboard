@@ -37,9 +37,10 @@ function LoginContent() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-4">
-      <Card className="w-full max-w-md">
+    <div className="flex min-h-screen items-center justify-center bg-melt-glacial-ink px-4">
+      <Card className="w-full max-w-md border-0 shadow-xl">
         <CardHeader className="text-center">
+          <img src="/melt_logo.png" alt="MELT Brands" className="mx-auto mb-4 h-8 w-auto" />
           <CardTitle className="text-2xl font-bold">Welcome back</CardTitle>
           <CardDescription>Sign in to your MELT dashboard</CardDescription>
         </CardHeader>

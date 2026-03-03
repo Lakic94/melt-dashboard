@@ -13,7 +13,7 @@ function InvitationContent() {
   return (
     <div className="space-y-6">
       {checkoutSuccess && (
-        <div className="rounded-md bg-green-50 border border-green-200 p-4 text-sm text-green-800">
+        <div className="rounded-md bg-melt-icefield-blue/30 border border-melt-impact-blue/20 p-4 text-sm text-melt-glacial-ink">
           Your purchase was successful! Thank you for joining MELT.
         </div>
       )}
@@ -25,10 +25,10 @@ function InvitationContent() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="rounded-lg border bg-gradient-to-br from-primary/5 to-primary/10 p-8 text-center">
-            <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-primary/10">
+          <div className="rounded-lg border border-melt-icefield-blue bg-gradient-to-br from-melt-icefield-blue/20 to-melt-impact-blue/10 p-8 text-center">
+            <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-melt-impact-blue/10">
               <svg
-                className="h-10 w-10 text-primary"
+                className="h-10 w-10 text-melt-impact-blue"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -41,7 +41,7 @@ function InvitationContent() {
                 />
               </svg>
             </div>
-            <h3 className="mb-2 text-lg font-semibold">You&apos;re Invited</h3>
+            <h3 className="mb-2 text-lg font-semibold text-melt-glacial-ink">You&apos;re Invited</h3>
             <p className="text-sm text-muted-foreground">
               As a MELT member, you have access to our exclusive products
               and can invite others through your personal referral code.

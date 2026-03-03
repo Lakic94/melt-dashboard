@@ -4,15 +4,9 @@ import { verifyInviteToken } from "@/lib/auth/invite-token";
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  // Protect /signup — require valid invite token (or referral code)
+  // Protect /signup — require valid invite token
   if (pathname === "/signup") {
     const token = req.nextUrl.searchParams.get("token");
-    const ref = req.nextUrl.searchParams.get("ref");
-
-    // Allow access if valid invite token OR referral code present
-    if (ref) {
-      return NextResponse.next();
-    }
 
     if (!token) {
       return NextResponse.redirect(new URL("/login", req.url));

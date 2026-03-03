@@ -22,14 +22,14 @@ export async function OPTIONS(req: NextRequest) {
 export async function POST(req: NextRequest) {
   const headers = corsHeaders(req.headers.get("origin"));
   try {
-    const { code } = await req.json();
+    const { code, ref } = await req.json();
 
     if (!code || code !== process.env.INVITE_ACCESS_CODE) {
       return NextResponse.json({ error: "Invalid invite code" }, { status: 403, headers });
     }
 
     const token = await createInviteToken();
-    return NextResponse.json({ token }, { headers });
+    return NextResponse.json({ token, ref: ref || null }, { headers });
   } catch {
     return NextResponse.json({ error: "Invalid request" }, { status: 400, headers });
   }

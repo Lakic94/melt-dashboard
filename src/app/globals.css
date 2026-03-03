@@ -45,75 +45,139 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
+  /* MELT brand palette — use as bg-melt-impact-blue, text-melt-glacial-ink, etc. */
+  --color-melt-impact-blue: #117896;
+  --color-melt-icefield-blue: #C7EFF9;
+  --color-melt-glacial-ink: #081A49;
+  --color-melt-arctic-light: #FFFAF5;
+  --color-melt-warm-copper: #C68346;
+  --color-melt-cool-gray: #C6CBD7;
+  --color-melt-sand: #E7C79F;
+  --color-melt-amber: #F3BC3C;
+  --color-melt-tangerine: #E96A35;
+  --color-melt-dark-brown: #3D2200;
 }
 
+/* ── Arctic (default) — clean, light, white sidebar ── */
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --background: #FFFAF5;
+  --foreground: #020623;
+  --card: #ffffff;
+  --card-foreground: #020623;
+  --popover: #ffffff;
+  --popover-foreground: #020623;
+  --primary: #117896;
+  --primary-foreground: #ffffff;
+  --secondary: #e8f7fb;
+  --secondary-foreground: #081A49;
+  --muted: #f0ebe6;
+  --muted-foreground: #6b6e82;
+  --accent: #C7EFF9;
+  --accent-foreground: #081A49;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --border: #e2ddd8;
+  --input: #e2ddd8;
+  --ring: #117896;
+  --chart-1: #117896;
+  --chart-2: #C68346;
+  --chart-3: #F3BC3C;
+  --chart-4: #E96A35;
+  --chart-5: #C7EFF9;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #081A49;
+  --sidebar-primary: #117896;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e8f7fb;
+  --sidebar-accent-foreground: #081A49;
+  --sidebar-border: #e2ddd8;
+  --sidebar-ring: #117896;
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+/* ── Glacial — dark sidebar, professional ── */
+.theme-glacial {
+  --sidebar: #081A49;
+  --sidebar-foreground: #FFFAF5;
+  --sidebar-primary: #117896;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #0f2560;
+  --sidebar-accent-foreground: #FFFAF5;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: #117896;
+}
+
+/* ── Copper — warm, earthy ── */
+.theme-copper {
+  --primary: #C68346;
+  --primary-foreground: #ffffff;
+  --secondary: #faf0e4;
+  --secondary-foreground: #3D2200;
+  --accent: #E7C79F;
+  --accent-foreground: #3D2200;
+  --ring: #C68346;
+  --chart-1: #C68346;
+  --chart-2: #117896;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #3D2200;
+  --sidebar-primary: #C68346;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #faf0e4;
+  --sidebar-accent-foreground: #3D2200;
+  --sidebar-border: #e2ddd8;
+  --sidebar-ring: #C68346;
+}
+
+/* ── Ocean — bold blue sidebar ── */
+.theme-ocean {
+  --primary: #081A49;
+  --primary-foreground: #ffffff;
+  --ring: #081A49;
+  --chart-1: #081A49;
+  --sidebar: #117896;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #FFFAF5;
+  --sidebar-primary-foreground: #117896;
+  --sidebar-accent: #0e6a85;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(255, 255, 255, 0.15);
+  --sidebar-ring: #C7EFF9;
+}
+
+/* ── Dark — full dark mode ── */
+.dark,
+.theme-dark {
+  --background: #020623;
+  --foreground: #FFFAF5;
+  --card: #081A49;
+  --card-foreground: #FFFAF5;
+  --popover: #081A49;
+  --popover-foreground: #FFFAF5;
+  --primary: #3dacc6;
+  --primary-foreground: #020623;
+  --secondary: #0f2560;
+  --secondary-foreground: #C7EFF9;
+  --muted: #0f2560;
+  --muted-foreground: #8b8fa3;
+  --accent: #0f2560;
+  --accent-foreground: #C7EFF9;
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --border: rgba(199, 239, 249, 0.1);
+  --input: rgba(199, 239, 249, 0.15);
+  --ring: #117896;
+  --chart-1: #3dacc6;
+  --chart-2: #C68346;
+  --chart-3: #F3BC3C;
+  --chart-4: #E96A35;
+  --chart-5: #C7EFF9;
+  --sidebar: #020623;
+  --sidebar-foreground: #FFFAF5;
+  --sidebar-primary: #3dacc6;
+  --sidebar-primary-foreground: #020623;
+  --sidebar-accent: #081A49;
+  --sidebar-accent-foreground: #FFFAF5;
+  --sidebar-border: rgba(199, 239, 249, 0.1);
+  --sidebar-ring: #117896;
 }
 
 @layer base {

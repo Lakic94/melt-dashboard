@@ -25,7 +25,7 @@ function toD3Tree(node: TreeNode): any {
 function renderCustomNode({ nodeDatum }: any) {
   return (
     <g>
-      <circle r={20} fill="hsl(var(--primary))" opacity={0.9} />
+      <circle r={20} fill="var(--primary)" opacity={0.9} />
       <text
         fill="white"
         strokeWidth={0}
@@ -48,7 +48,7 @@ function renderCustomNode({ nodeDatum }: any) {
         {nodeDatum.name}
       </text>
       <text
-        fill="hsl(var(--muted-foreground))"
+        fill="var(--muted-foreground)"
         strokeWidth={0}
         x={0}
         y={56}

@@ -16,7 +16,7 @@ function corsHeaders(origin: string | null) {
 }
 
 export async function OPTIONS(req: NextRequest) {
-  return NextResponse.json(null, { headers: corsHeaders(req.headers.get("origin")) });
+  return new NextResponse(null, { status: 204, headers: corsHeaders(req.headers.get("origin")) });
 }
 
 export async function POST(req: NextRequest) {

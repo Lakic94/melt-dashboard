@@ -8,7 +8,6 @@ const apkGaleria = localFont({
   src: "../../public/fonts/ApkGaleria.ttf",
   variable: "--font-apk-galeria",
   display: "swap",
-  fallback: ["Arial", "sans-serif"],
 });
 
 const gtEra = localFont({
@@ -40,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${apkGaleria.variable} ${gtEra.variable} ${geistMono.variable} antialiased`}
+        className={`${apkGaleria.className} ${apkGaleria.variable} ${gtEra.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider>{children}</ThemeProvider>
       </body>

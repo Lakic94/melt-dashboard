@@ -4,8 +4,9 @@ import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { products } from "@/lib/stripe/prices";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+
+const RESERVE_IMAGE =
+  "https://cdn.prod.website-files.com/6998d0b89ccfc8b21a745a10/699fe40a26b1654683aca75b_Group%2046%20(3).svg";
 
 function BuyProductContent() {
   const searchParams = useSearchParams();
@@ -28,70 +29,89 @@ function BuyProductContent() {
       }
     } catch {
       alert("Something went wrong. Please try again.");
-      
     } finally {
       setLoadingProduct(null);
     }
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       {checkoutCancelled && (
-        <div className="rounded-md bg-muted p-3 text-sm text-muted-foreground">
+        <div className="rounded-lg bg-muted p-3 text-sm text-muted-foreground">
           Checkout was cancelled. You can try again whenever you&apos;re ready.
         </div>
       )}
 
-      <div>
-        <h2 className="text-lg font-semibold">Available Products</h2>
-        <p className="text-sm text-muted-foreground">
-          Browse MELT products. Each purchase includes a charitable donation.
-        </p>
-      </div>
-
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {products.map((product) => (
-          <Card key={product.id} className="flex flex-col">
-            <CardHeader>
-              <div className="flex items-start justify-between">
-                <CardTitle className="text-lg">{product.name}</CardTitle>
-                <Badge variant="secondary">${product.price}</Badge>
+          <div
+            key={product.id}
+            className="group relative flex flex-col overflow-hidden rounded-2xl border bg-card transition-shadow hover:shadow-lg"
+          >
+            <div className="relative aspect-[2/1] overflow-hidden bg-muted">
+              <img
+                src={product.image}
+                alt={product.name}
+                className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+
+            <div className="flex flex-1 flex-col p-5">
+              <div className="flex items-center justify-between">
+                <h3 className="text-lg font-semibold">{product.name}</h3>
+                <span className="text-2xl font-bold tracking-tight">
+                  ${product.price}
+                </span>
               </div>
-              <CardDescription>{product.description}</CardDescription>
-            </CardHeader>
-            <CardContent className="flex-1">
-              <ul className="space-y-2">
-                {product.features.map((feature, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm">
-                    <svg
-                      className="mt-0.5 h-4 w-4 shrink-0 text-primary"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-            <CardFooter>
-              <Button
-                className="w-full"
-                onClick={() => handleBuy(product.id)}
-                disabled={loadingProduct !== null}
-              >
-                {loadingProduct === product.id ? "Redirecting..." : "Buy Now"}
-              </Button>
-            </CardFooter>
-          </Card>
+
+              <p className="mt-2 text-sm text-muted-foreground">
+                {product.bottles} bottles &middot; ${(product.price / product.bottles).toFixed(2)}/bottle &middot; $0.75 donated
+              </p>
+
+              <div className="mt-auto pt-5">
+                <Button
+                  className="w-full"
+                  size="lg"
+                  onClick={() => handleBuy(product.id)}
+                  disabled={loadingProduct !== null}
+                >
+                  {loadingProduct === product.id ? "Redirecting..." : "Buy Now"}
+                </Button>
+              </div>
+            </div>
+          </div>
         ))}
+
+        {/* Reserve card */}
+        <div className="group relative flex flex-col overflow-hidden rounded-2xl border bg-card transition-shadow hover:shadow-lg">
+          <div className="relative flex aspect-[2/1] items-center justify-center overflow-hidden bg-muted p-8">
+            <img
+              src={RESERVE_IMAGE}
+              alt="Reserve"
+              className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
+            />
+          </div>
+
+          <div className="flex flex-1 flex-col p-5">
+            <div className="flex items-start justify-between">
+              <div>
+                <h3 className="text-lg font-semibold">Reserve</h3>
+              </div>
+            </div>
+
+            <div className="mt-auto pt-5">
+              <Button className="w-full" size="lg" asChild>
+                <a
+                  href="https://calendly.com/z-meltbrands/melt-intro"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Schedule a Call
+                </a>
+              </Button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ export interface ProductDisplay {
   bottles: number;
   stripePriceId: string; // one-time Stripe price ID
   features: string[];
+  image: string;
 }
 
 // Live price IDs (fallbacks) — override with STRIPE_PRICE_* env vars for test
@@ -35,6 +36,7 @@ export const products: ProductDisplay[] = [
       "$3.00 per bottle",
       "$0.75/bottle donated to Impact Fund",
     ],
+    image: "https://cdn.prod.website-files.com/6998d0b89ccfc8b21a745a10/699c73f1ebafc884f9c7637d_image%20181.avif",
   },
   {
     id: "6-case",
@@ -48,6 +50,7 @@ export const products: ProductDisplay[] = [
       "$3.00 per bottle",
       "$0.75/bottle donated to Impact Fund",
     ],
+    image: "https://cdn.prod.website-files.com/6998d0b89ccfc8b21a745a10/699c73f1ebafc884f9c7636c_image%20180.avif",
   },
   {
     id: "9-case",
@@ -61,6 +64,7 @@ export const products: ProductDisplay[] = [
       "$3.00 per bottle",
       "$0.75/bottle donated to Impact Fund",
     ],
+    image: "https://cdn.prod.website-files.com/6998d0b89ccfc8b21a745a10/699c73f1ebafc884f9c76375_image%20181%20(1).avif",
   },
   {
     id: "12-case",
@@ -74,5 +78,6 @@ export const products: ProductDisplay[] = [
       "$3.00 per bottle",
       "$0.75/bottle donated to Impact Fund",
     ],
+    image: "https://cdn.prod.website-files.com/6998d0b89ccfc8b21a745a10/699c73f1ebafc884f9c76386_image%20181%20(2).avif",
   },
 ];

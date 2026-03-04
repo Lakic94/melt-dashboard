@@ -19,9 +19,19 @@ function InvitationContent() {
       )}
 
       {/* Invitation Card */}
-      <div className="bg-[#020623] rounded-2xl overflow-hidden max-w-[1920px] mx-auto">
+      <div className="bg-[#020623] rounded-2xl overflow-hidden max-w-[1920px] h-[950px] mx-auto relative flex flex-col">
+        {/* Stars background texture */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 opacity-25 pointer-events-none"
+          style={{
+            backgroundImage: "url('/images/background_stars.png')",
+            backgroundSize: "300px 200px",
+            backgroundPosition: "top left",
+          }}
+        />
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4">
+        <div className="flex items-center justify-between px-10 py-4">
           <img
             src="/melt_logo.png"
             alt="MELT"
@@ -32,11 +42,29 @@ function InvitationContent() {
           </span>
         </div>
 
-        {/* Main two-panel layout — no gap between panels */}
-        <div className="flex flex-col lg:flex-row lg:min-h-[600px] xl:min-h-[700px]">
+        {/* Dashed crosshair lines — edge to edge, crossing at panel corners to form + marks */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-10">
+          {/* Top horizontal line — aligns with top of panels */}
+          <div className="absolute top-[60px] left-0 right-0 border-t border-dashed border-[#c7eff9]/20" />
+          {/* Bottom horizontal line — aligns with bottom of panels */}
+          <div className="absolute bottom-[44px] left-0 right-0 border-t border-dashed border-[#c7eff9]/20" />
+          {/* Left vertical line */}
+          <div className="absolute left-[20px] top-0 bottom-0 border-l border-dashed border-[#c7eff9]/20" />
+          {/* Right vertical line */}
+          <div className="absolute right-[20px] top-0 bottom-0 border-l border-dashed border-[#c7eff9]/20" />
+          {/* Plus icons at intersections — centered exactly on crossing points */}
+          <span className="absolute top-[60px] left-[20px] flex h-0 w-0 items-center justify-center text-[#c7eff9]/70 text-xl font-mono font-thin leading-none select-none">+</span>
+          <span className="absolute top-[60px] right-[20px] flex h-0 w-0 items-center justify-center text-[#c7eff9]/70 text-xl font-mono font-thin leading-none select-none">+</span>
+          <span className="absolute bottom-[44px] left-[20px] flex h-0 w-0 items-center justify-center text-[#c7eff9]/70 text-xl font-mono font-thin leading-none select-none">+</span>
+          <span className="absolute bottom-[44px] right-[20px] flex h-0 w-0 items-center justify-center text-[#c7eff9]/70 text-xl font-mono font-thin leading-none select-none">+</span>
+        </div>
+
+        {/* Main two-panel layout */}
+        <div className="relative px-8 flex-1 min-h-0">
+          <div className="flex flex-col lg:flex-row h-full">
           {/* Left panel wrapper — padding reveals dark bg around card */}
-          <div className="lg:w-[37%] shrink-0 pl-3 py-3">
-            <div className="bg-[#C7EFF9] rounded-xl h-full flex flex-col items-center justify-between py-14 xl:py-20 px-6 xl:px-10 relative overflow-hidden min-h-[480px]">
+          <div className="lg:w-[37%] shrink-0 py-3">
+            <div className="bg-[#C7EFF9] h-full flex flex-col items-center justify-between py-14 xl:py-20 px-6 xl:px-10 relative overflow-hidden">
               {/* Top ticket notch */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-[#020623]" />
               {/* Bottom ticket notch */}
@@ -92,7 +120,7 @@ function InvitationContent() {
           </div>
 
           {/* Right panel — ocean blue letter, flush against left panel */}
-          <div className="flex-1 py-3 min-h-[500px] lg:min-h-0">
+          <div className="flex-1 py-3 pr-0">
             <div className="bg-[#117896] h-full relative">
               {/* Glacier photo */}
               <div className="relative lg:absolute lg:top-10 lg:left-10 w-full lg:w-52 xl:w-56 h-56 lg:h-64 overflow-hidden">
@@ -177,9 +205,10 @@ function InvitationContent() {
             </div>
           </div>
         </div>
+        </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between px-6 py-4">
+        <div className="flex items-center justify-between px-10 py-4">
           <span className="font-mono text-sm text-[#c7eff9]/50 uppercase tracking-tight">
             / Jan 10,2026
           </span>

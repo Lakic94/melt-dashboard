@@ -7,7 +7,7 @@ import { ThemeSwitcher } from "@/components/theme-switcher";
 
 const navItems = [
   {
-    label: "Dashboard",
+    label: "Invitation",
     href: "/dashboard",
     value: "invitation",
     icon: (
@@ -139,9 +139,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           <h1 className="text-2xl font-semibold text-foreground">
             Hello, {userName}
           </h1>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Here&apos;s what&apos;s going on today.
-          </p>
         </div>
 
         {/* Page content */}

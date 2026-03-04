@@ -26,6 +26,8 @@ const db = drizzle(client, { schema });
 async function cleanSeedData() {
   console.log("Cleaning previous seed data...");
   await client.batch([
+    // First, null out referred_by references pointing to seed users (from any user)
+    { sql: `UPDATE user_profiles SET referred_by = NULL WHERE referred_by IN (SELECT id FROM user WHERE email LIKE 'seed-%@test.com')`, args: [] },
     { sql: `DELETE FROM user_profiles WHERE user_id IN (SELECT id FROM user WHERE email LIKE 'seed-%@test.com')`, args: [] },
     { sql: `DELETE FROM account WHERE userId IN (SELECT id FROM user WHERE email LIKE 'seed-%@test.com')`, args: [] },
     { sql: `DELETE FROM session WHERE userId IN (SELECT id FROM user WHERE email LIKE 'seed-%@test.com')`, args: [] },

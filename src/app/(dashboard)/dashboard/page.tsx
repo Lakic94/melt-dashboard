@@ -132,7 +132,7 @@ function InvitationContent() {
               </div>
 
               {/* Letter body */}
-              <div className="px-6 py-8 lg:ml-[34%] xl:ml-[30%] lg:py-10 lg:pr-10 xl:pr-14 space-y-5 text-lg tracking-[-0.72px] leading-relaxed">
+              <div className="px-6 py-8 lg:ml-[34%] xl:ml-[30%] lg:py-10 lg:pr-10 xl:pr-14 space-y-5 font-[family-name:var(--font-gt-era)] text-lg tracking-[-0.72px] leading-relaxed">
                 <p className="text-[#c7eff9]">Hey {userName},</p>
 
                 <p className="text-[#c7eff9]/80">
@@ -184,7 +184,7 @@ function InvitationContent() {
                 <p className="text-[#c7eff9]/80">
                   If you&apos;re curious:{" "}
                   <a
-                    href="https://soul-492b7c.webflow.io/"
+                    href="https://calendly.com/z-meltbrands/melt-intro"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-white font-bold underline"

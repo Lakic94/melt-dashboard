@@ -3,7 +3,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { signOut, useSession } from "@/lib/auth/auth-client";
 import { cn } from "@/lib/utils";
-import { ThemeSwitcher } from "@/components/theme-switcher";
+
 
 const navItems = [
   {
@@ -16,16 +16,17 @@ const navItems = [
       </svg>
     ),
   },
-  {
-    label: "Buy Product",
-    href: "/dashboard/buy",
-    value: "buy",
-    icon: (
-      <svg className="size-[18px]" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
-      </svg>
-    ),
-  },
+  // Buy Product page is temporarily hidden
+  // {
+  //   label: "Buy Product",
+  //   href: "/dashboard/buy",
+  //   value: "buy",
+  //   icon: (
+  //     <svg className="size-[18px]" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+  //       <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+  //     </svg>
+  //   ),
+  // },
   {
     label: "Referrals",
     href: "/dashboard/referrals",
@@ -69,7 +70,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
         {/* Nav */}
         <nav className="flex-1 px-3 pt-4">
-          <p className="mb-2 px-2 text-[11px] font-medium uppercase tracking-wider text-sidebar-foreground/60">
+          <p className="mb-2 px-2 font-[family-name:var(--font-gt-era)] text-[12px] font-medium uppercase tracking-wide text-sidebar-foreground/60">
             Menu
           </p>
           <div className="space-y-1">
@@ -80,7 +81,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                   key={item.value}
                   onClick={() => router.push(item.href)}
                   className={cn(
-                    "relative flex w-full items-center gap-3 rounded-lg px-3 py-2 text-[14px] font-medium transition-colors",
+                    "relative flex w-full cursor-pointer items-center gap-3 rounded-lg px-3 py-2 font-[family-name:var(--font-gt-era)] text-[12px] font-medium uppercase tracking-wide transition-colors",
                     isActive
                       ? "bg-sidebar-accent text-sidebar-primary"
                       : "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground"
@@ -96,11 +97,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             })}
           </div>
         </nav>
-
-        {/* Theme switcher */}
-        <div className="border-t border-sidebar-border px-3 pt-2">
-          <ThemeSwitcher />
-        </div>
 
         {/* User footer */}
         <div className="border-t border-sidebar-border p-3">
@@ -122,7 +118,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           </div>
           <button
             onClick={handleSignOut}
-            className="mt-1 flex w-full items-center gap-3 rounded-lg px-2 py-2 text-[13px] text-sidebar-foreground/70 transition-colors hover:bg-sidebar-accent hover:text-sidebar-foreground"
+            className="mt-1 flex w-full cursor-pointer items-center gap-3 rounded-lg px-2 py-2 font-[family-name:var(--font-gt-era)] text-[12px] font-medium uppercase tracking-wide text-sidebar-foreground/70 transition-colors hover:bg-sidebar-accent hover:text-sidebar-foreground"
           >
             <svg className="size-[18px]" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
@@ -133,7 +129,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       </aside>
 
       {/* Main content */}
-      <main className="flex-1 pl-[220px]">
+      <main className="flex min-h-screen flex-1 flex-col pl-[220px]">
         {/* Page header — greeting style */}
         <div className="px-10 pt-10 pb-6">
           <h1 className="text-2xl font-semibold text-foreground">
@@ -142,7 +138,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         </div>
 
         {/* Page content */}
-        <div className="px-10 pb-10">
+        <div className="flex flex-1 flex-col px-10 pb-10">
           {children}
         </div>
       </main>

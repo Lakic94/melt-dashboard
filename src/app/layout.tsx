@@ -11,6 +11,17 @@ const apkGaleria = localFont({
   fallback: ["Arial", "sans-serif"],
 });
 
+const gtEra = localFont({
+  src: [
+    { path: "../../public/fonts/GT-Era-Text-Regular.ttf", weight: "400", style: "normal" },
+    { path: "../../public/fonts/GT-Era-Text-Regular-Oblique.ttf", weight: "400", style: "italic" },
+    { path: "../../public/fonts/GT-Era-Text-Medium.ttf", weight: "500", style: "normal" },
+    { path: "../../public/fonts/GT-Era-Text-Medium-Oblique.ttf", weight: "500", style: "italic" },
+  ],
+  variable: "--font-gt-era",
+  display: "swap",
+});
+
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -29,7 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${apkGaleria.variable} ${geistMono.variable} antialiased`}
+        className={`${apkGaleria.variable} ${gtEra.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider>{children}</ThemeProvider>
       </body>

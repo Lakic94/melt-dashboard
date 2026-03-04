@@ -60,11 +60,11 @@ function SignupContent() {
       <Card className="w-full max-w-md border-0 shadow-xl">
         <CardHeader className="text-center">
           <img src="/melt_logo.png" alt="MELT Brands" className="mx-auto mb-4 h-8 w-auto" />
-          <CardTitle className="text-2xl font-bold">Create your account</CardTitle>
-          <CardDescription>Join MELT and get started</CardDescription>
+          <CardTitle className="font-[family-name:var(--font-gt-era)] text-2xl font-bold">Create your account</CardTitle>
+          <CardDescription className="font-[family-name:Arial,sans-serif]">Join MELT and get started</CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4 font-[family-name:Arial,sans-serif]">
             {error && (
               <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
                 {error}

@@ -41,11 +41,11 @@ function LoginContent() {
       <Card className="w-full max-w-md border-0 shadow-xl">
         <CardHeader className="text-center">
           <img src="/melt_logo.png" alt="MELT Brands" className="mx-auto mb-4 h-8 w-auto" />
-          <CardTitle className="text-2xl font-bold">Welcome back</CardTitle>
-          <CardDescription>Sign in to your MELT dashboard</CardDescription>
+          <CardTitle className="font-[family-name:var(--font-gt-era)] text-2xl font-bold">Welcome back</CardTitle>
+          <CardDescription className="font-[family-name:Arial,sans-serif]">Sign in to your MELT dashboard</CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4 font-[family-name:Arial,sans-serif]">
             {error && (
               <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
                 {error}

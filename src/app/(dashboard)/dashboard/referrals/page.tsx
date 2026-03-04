@@ -128,8 +128,8 @@ export default function ReferralsTab() {
   const totalReferrals = tree ? countNodes(tree) - 1 : 0;
 
   return (
-    <div className="space-y-6">
-      <Card>
+    <div className="flex flex-1 flex-col gap-6">
+      <Card className="shrink-0">
         <CardHeader>
           <CardTitle>Your Referral Code</CardTitle>
           <CardDescription>Share this code or link with friends to grow your network</CardDescription>
@@ -179,30 +179,26 @@ export default function ReferralsTab() {
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader>
-          <div className="flex items-center justify-between">
-            <div>
-              <CardTitle>Referral Network</CardTitle>
-              <CardDescription>
-                {totalReferrals === 0
-                  ? "No referrals yet. Share your code to get started!"
-                  : `${totalReferrals} referral${totalReferrals === 1 ? "" : "s"} in your network`}
-              </CardDescription>
-            </div>
-          </div>
+      <Card className="flex min-h-0 flex-1 flex-col">
+        <CardHeader className="shrink-0">
+          <CardTitle>Referral Network</CardTitle>
+          <CardDescription>
+            {totalReferrals === 0
+              ? "No referrals yet. Share your code to get started!"
+              : `${totalReferrals} referral${totalReferrals === 1 ? "" : "s"} in your network`}
+          </CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className="flex flex-1 flex-col">
           {loading ? (
-            <div className="flex h-[400px] items-center justify-center text-sm text-muted-foreground">
+            <div className="flex flex-1 items-center justify-center text-sm text-muted-foreground">
               Loading...
             </div>
           ) : tree && totalReferrals > 0 ? (
-            <div className="h-[500px] w-full rounded-lg border">
+            <div className="w-full flex-1 rounded-lg border">
               <ReferralTree data={tree} />
             </div>
           ) : (
-            <div className="flex h-[200px] items-center justify-center rounded-lg border border-dashed text-sm text-muted-foreground">
+            <div className="flex flex-1 items-center justify-center rounded-lg border border-dashed text-sm text-muted-foreground">
               Your referral tree will appear here once someone signs up with your code
             </div>
           )}

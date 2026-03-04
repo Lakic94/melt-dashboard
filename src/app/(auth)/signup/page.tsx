@@ -11,11 +11,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 function SignupContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const ref = searchParams.get("ref") || "";
+  const refParam = searchParams.get("ref") || "";
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [referralCode, setReferralCode] = useState(refParam);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -36,7 +37,7 @@ function SignupContent() {
       const res = await fetch("/api/auth/setup-profile", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ referralCode: ref || undefined }),
+        body: JSON.stringify({ referralCode: referralCode.trim() || undefined }),
       });
 
       if (!res.ok) {
@@ -101,6 +102,16 @@ function SignupContent() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 minLength={8}
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="referralCode">Referral Code (optional)</Label>
+              <Input
+                id="referralCode"
+                type="text"
+                placeholder="Enter referral code"
+                value={referralCode}
+                onChange={(e) => setReferralCode(e.target.value)}
               />
             </div>
             <Button type="submit" className="w-full" disabled={loading}>

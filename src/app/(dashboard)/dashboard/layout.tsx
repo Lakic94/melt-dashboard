@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { signOut, useSession } from "@/lib/auth/auth-client";
 import { cn } from "@/lib/utils";
@@ -50,6 +51,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   const pathname = usePathname();
   const router = useRouter();
   const { data: session } = useSession();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const activeNav = getActiveNav(pathname);
   const userName = session?.user?.name || "there";
@@ -59,86 +61,133 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     router.push("/login");
   }
 
+  function handleNavClick(href: string) {
+    router.push(href);
+    setMobileMenuOpen(false);
+  }
+
+  const sidebarContent = (
+    <>
+      {/* Logo */}
+      <div className="flex h-16 items-center px-5">
+        <img src="/melt_logo.png" alt="MELT Brands" className="h-7 w-auto" />
+      </div>
+
+      {/* Nav */}
+      <nav className="flex-1 px-3 pt-4">
+        <p className="mb-2 px-2 font-[family-name:var(--font-gt-era)] text-[12px] font-medium uppercase tracking-wide text-sidebar-foreground/60">
+          Menu
+        </p>
+        <div className="space-y-1">
+          {navItems.map((item) => {
+            const isActive = activeNav === item.value;
+            return (
+              <button
+                key={item.value}
+                onClick={() => handleNavClick(item.href)}
+                className={cn(
+                  "relative flex w-full cursor-pointer items-center gap-3 rounded-lg px-3 py-2 font-[family-name:var(--font-gt-era)] text-[12px] font-medium uppercase tracking-wide transition-colors",
+                  isActive
+                    ? "bg-sidebar-accent text-sidebar-primary"
+                    : "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground"
+                )}
+              >
+                {isActive && (
+                  <span className="absolute left-0 top-1/2 h-5 w-[3px] -translate-y-1/2 rounded-r-full bg-sidebar-primary" />
+                )}
+                {item.icon}
+                {item.label}
+              </button>
+            );
+          })}
+        </div>
+      </nav>
+
+      {/* User footer */}
+      <div className="border-t border-sidebar-border p-3">
+        <div className="flex items-center gap-3 rounded-lg px-2 py-2">
+          {/* Avatar */}
+          <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-sidebar-primary/15">
+            <span className="text-xs font-semibold text-sidebar-primary">
+              {(session?.user?.name || session?.user?.email || "?").charAt(0).toUpperCase()}
+            </span>
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-sm font-medium text-sidebar-foreground">
+              {session?.user?.name || "User"}
+            </p>
+            <p className="truncate text-[11px] text-sidebar-foreground/60">
+              {session?.user?.email}
+            </p>
+          </div>
+        </div>
+        <button
+          onClick={handleSignOut}
+          className="mt-1 flex w-full cursor-pointer items-center gap-3 rounded-lg px-2 py-2 font-[family-name:var(--font-gt-era)] text-[12px] font-medium uppercase tracking-wide text-sidebar-foreground/70 transition-colors hover:bg-sidebar-accent hover:text-sidebar-foreground"
+        >
+          <svg className="size-[18px]" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
+          </svg>
+          Sign out
+        </button>
+      </div>
+    </>
+  );
+
   return (
     <div className="flex min-h-screen bg-background">
-      {/* Sidebar */}
-      <aside className="fixed inset-y-0 left-0 z-30 flex w-[220px] flex-col bg-sidebar text-sidebar-foreground border-r border-sidebar-border">
-        {/* Logo */}
-        <div className="flex h-16 items-center px-5">
-          <img src="/melt_logo.png" alt="MELT Brands" className="h-7 w-auto" />
-        </div>
+      {/* Mobile header bar */}
+      <div className="fixed inset-x-0 top-0 z-40 flex h-14 items-center gap-3 border-b border-sidebar-border bg-sidebar px-4 lg:hidden">
+        <button
+          onClick={() => setMobileMenuOpen(true)}
+          className="flex size-9 items-center justify-center rounded-lg text-sidebar-foreground hover:bg-sidebar-accent"
+        >
+          <svg className="size-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+        <img src="/melt_logo.png" alt="MELT Brands" className="h-6 w-auto" />
+      </div>
 
-        {/* Nav */}
-        <nav className="flex-1 px-3 pt-4">
-          <p className="mb-2 px-2 font-[family-name:var(--font-gt-era)] text-[12px] font-medium uppercase tracking-wide text-sidebar-foreground/60">
-            Menu
-          </p>
-          <div className="space-y-1">
-            {navItems.map((item) => {
-              const isActive = activeNav === item.value;
-              return (
-                <button
-                  key={item.value}
-                  onClick={() => router.push(item.href)}
-                  className={cn(
-                    "relative flex w-full cursor-pointer items-center gap-3 rounded-lg px-3 py-2 font-[family-name:var(--font-gt-era)] text-[12px] font-medium uppercase tracking-wide transition-colors",
-                    isActive
-                      ? "bg-sidebar-accent text-sidebar-primary"
-                      : "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground"
-                  )}
-                >
-                  {isActive && (
-                    <span className="absolute left-0 top-1/2 h-5 w-[3px] -translate-y-1/2 rounded-r-full bg-sidebar-primary" />
-                  )}
-                  {item.icon}
-                  {item.label}
-                </button>
-              );
-            })}
-          </div>
-        </nav>
+      {/* Mobile backdrop */}
+      {mobileMenuOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-black/50 lg:hidden"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+      )}
 
-        {/* User footer */}
-        <div className="border-t border-sidebar-border p-3">
-          <div className="flex items-center gap-3 rounded-lg px-2 py-2">
-            {/* Avatar */}
-            <div className="flex size-8 shrink-0 items-center justify-center rounded-full bg-sidebar-primary/15">
-              <span className="text-xs font-semibold text-sidebar-primary">
-                {(session?.user?.name || session?.user?.email || "?").charAt(0).toUpperCase()}
-              </span>
-            </div>
-            <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-medium text-sidebar-foreground">
-                {session?.user?.name || "User"}
-              </p>
-              <p className="truncate text-[11px] text-sidebar-foreground/60">
-                {session?.user?.email}
-              </p>
-            </div>
-          </div>
-          <button
-            onClick={handleSignOut}
-            className="mt-1 flex w-full cursor-pointer items-center gap-3 rounded-lg px-2 py-2 font-[family-name:var(--font-gt-era)] text-[12px] font-medium uppercase tracking-wide text-sidebar-foreground/70 transition-colors hover:bg-sidebar-accent hover:text-sidebar-foreground"
-          >
-            <svg className="size-[18px]" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0 0 13.5 3h-6a2.25 2.25 0 0 0-2.25 2.25v13.5A2.25 2.25 0 0 0 7.5 21h6a2.25 2.25 0 0 0 2.25-2.25V15m3 0 3-3m0 0-3-3m3 3H9" />
-            </svg>
-            Sign out
-          </button>
-        </div>
+      {/* Sidebar — desktop: fixed, mobile: slide-in drawer */}
+      <aside
+        className={cn(
+          "fixed inset-y-0 left-0 z-50 flex w-[220px] flex-col bg-sidebar text-sidebar-foreground border-r border-sidebar-border transition-transform duration-200 ease-in-out",
+          "lg:z-30 lg:translate-x-0",
+          mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+        )}
+      >
+        {/* Mobile close button */}
+        <button
+          onClick={() => setMobileMenuOpen(false)}
+          className="absolute right-2 top-3 flex size-8 items-center justify-center rounded-lg text-sidebar-foreground/70 hover:bg-sidebar-accent lg:hidden"
+        >
+          <svg className="size-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </button>
+        {sidebarContent}
       </aside>
 
       {/* Main content */}
-      <main className="flex min-h-screen flex-1 flex-col pl-[220px]">
+      <main className="flex min-h-screen flex-1 flex-col pl-0 lg:pl-[220px]">
         {/* Page header — greeting style */}
-        <div className="px-10 pt-10 pb-6">
+        <div className="px-4 pt-18 pb-4 sm:px-6 lg:px-10 lg:pt-10 lg:pb-6">
           <h1 className="text-2xl font-semibold text-foreground">
             Hello, {userName}
           </h1>
         </div>
 
         {/* Page content */}
-        <div className="flex flex-1 flex-col px-10 pb-10">
+        <div className="flex flex-1 flex-col px-4 pb-6 sm:px-6 lg:px-10 lg:pb-10">
           {children}
         </div>
       </main>

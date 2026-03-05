@@ -19,7 +19,7 @@ function InvitationContent() {
       )}
 
       {/* Invitation Card */}
-      <div className="bg-[#020623] rounded-2xl overflow-hidden max-w-[1920px] h-[950px] mx-auto relative flex flex-col">
+      <div className="bg-[#020623] rounded-2xl overflow-hidden max-w-[1920px] min-h-[600px] lg:min-h-[800px] xl:min-h-[950px] mx-auto relative flex flex-col">
         {/* Stars background texture */}
         <div
           aria-hidden="true"
@@ -31,7 +31,7 @@ function InvitationContent() {
           }}
         />
         {/* Header */}
-        <div className="flex items-center justify-between px-10 py-4">
+        <div className="flex items-center justify-between px-4 sm:px-6 lg:px-10 py-4">
           <img
             src="/melt_logo.png"
             alt="MELT"
@@ -43,7 +43,7 @@ function InvitationContent() {
         </div>
 
         {/* Dashed crosshair lines — edge to edge, crossing at panel corners to form + marks */}
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-10">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-10 hidden sm:block">
           {/* Top horizontal line — aligns with top of panels */}
           <div className="absolute top-[60px] left-0 right-0 border-t border-dashed border-[#c7eff9]/20" />
           {/* Bottom horizontal line — aligns with bottom of panels */}
@@ -63,8 +63,8 @@ function InvitationContent() {
         <div className="relative px-8 flex-1 min-h-0">
           <div className="flex flex-col lg:flex-row h-full">
           {/* Left panel wrapper — padding reveals dark bg around card */}
-          <div className="lg:w-[37%] shrink-0 py-3">
-            <div className="bg-[#C7EFF9] h-full flex flex-col items-center justify-between py-14 xl:py-20 px-6 xl:px-10 relative overflow-hidden">
+          <div className="w-full lg:w-[37%] shrink-0 py-3">
+            <div className="bg-[#C7EFF9] h-full flex flex-col items-center justify-between py-8 px-4 sm:py-10 sm:px-6 xl:py-20 xl:px-10 relative overflow-hidden">
               {/* Top ticket notch */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-[#020623]" />
               {/* Bottom ticket notch */}
@@ -87,7 +87,7 @@ function InvitationContent() {
                   </span>
                 </div>
                 <div>
-                  <h2 className="font-sans text-5xl xl:text-7xl text-[#020623] leading-[0.95] tracking-[-0.05em]">
+                  <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl xl:text-7xl text-[#020623] leading-[0.95] tracking-[-0.05em]">
                     Someone you{" "}
                     <span className="italic">should meet</span>
                   </h2>
@@ -107,7 +107,7 @@ function InvitationContent() {
                   &#x2015; A personal invitation from &#x2015;
                 </p>
                 <div>
-                  <p className="text-[28px] text-[#020623] tracking-[-1.12px] leading-relaxed">
+                  <p className="text-xl sm:text-[28px] text-[#020623] tracking-[-1.12px] leading-relaxed">
                     Zacharriah Schoose
                   </p>
                   <p className="text-lg text-[rgba(2,6,35,0.5)] tracking-[-0.72px]">
@@ -123,7 +123,7 @@ function InvitationContent() {
           <div className="flex-1 py-3 pr-0">
             <div className="bg-[#117896] h-full relative">
               {/* Glacier photo */}
-              <div className="relative lg:absolute lg:top-10 lg:left-10 w-full lg:w-52 xl:w-56 h-56 lg:h-64 overflow-hidden">
+              <div className="relative xl:absolute xl:top-10 xl:left-10 w-full xl:w-56 h-56 xl:h-64 overflow-hidden">
                 <img
                   src="/images/invitation-glacier.jpg"
                   alt="Arctic glacier"
@@ -132,7 +132,7 @@ function InvitationContent() {
               </div>
 
               {/* Letter body */}
-              <div className="px-6 py-8 lg:ml-[34%] xl:ml-[30%] lg:py-10 lg:pr-10 xl:pr-14 space-y-5 font-[family-name:var(--font-gt-era)] text-lg tracking-[-0.72px] leading-relaxed">
+              <div className="px-6 py-8 xl:ml-[40%] lg:py-10 lg:pr-10 xl:pr-14 space-y-5 font-[family-name:var(--font-gt-era)] text-lg tracking-[-0.72px] leading-relaxed">
                 <p className="text-[#c7eff9]">Hey {userName},</p>
 
                 <p className="text-[#c7eff9]/80">
@@ -198,7 +198,7 @@ function InvitationContent() {
                   documentary about how he got here. Worth a look.
                 </p>
 
-                <p className="text-[#c7eff9] text-2xl xl:text-[32px] tracking-[-1.6px] leading-snug pt-4">
+                <p className="text-[#c7eff9] text-xl sm:text-2xl xl:text-[32px] tracking-[-1.6px] leading-snug pt-4">
                   &ldquo; If this calls you, you&apos;ll know.&ensp;Trust it. &rdquo;
                 </p>
               </div>
@@ -208,7 +208,7 @@ function InvitationContent() {
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-between px-10 py-4">
+        <div className="flex items-center justify-between px-4 sm:px-6 lg:px-10 py-4">
           <span className="font-mono text-sm text-[#c7eff9]/50 uppercase tracking-tight">
             / Jan 10,2026
           </span>

@@ -141,7 +141,7 @@ export default function ReferralsTab() {
                 <Input
                   value={editValue}
                   onChange={(e) => setEditValue(e.target.value)}
-                  className="max-w-xs font-mono"
+                  className="max-w-full sm:max-w-xs font-mono"
                   maxLength={30}
                   autoFocus
                   onKeyDown={(e) => {
@@ -170,7 +170,7 @@ export default function ReferralsTab() {
           {editError && (
             <p className="text-sm text-destructive">{editError}</p>
           )}
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             <Input value={referralLink} readOnly className="font-mono text-sm" />
             <Button variant="outline" onClick={handleCopy} disabled={!referralLink}>
               {copied ? "Copied!" : "Copy"}

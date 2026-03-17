@@ -3,6 +3,7 @@
 import { Suspense } from "react";
 import { useSession } from "@/lib/auth/auth-client";
 import { useSearchParams } from "next/navigation";
+import { MeltCard } from "@/components/melt-card";
 
 function InvitationContent() {
   const { data: session } = useSession();
@@ -19,49 +20,12 @@ function InvitationContent() {
       )}
 
       {/* Invitation Card */}
-      <div className="bg-[#020623] rounded-2xl overflow-hidden max-w-[1920px] min-h-[600px] lg:min-h-[800px] xl:min-h-[950px] mx-auto relative flex flex-col">
-        {/* Stars background texture */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 opacity-25 pointer-events-none"
-          style={{
-            backgroundImage: "url('/images/background_stars.png')",
-            backgroundSize: "300px 200px",
-            backgroundPosition: "top left",
-          }}
-        />
-        {/* Header */}
-        <div className="flex items-center justify-between px-4 sm:px-6 lg:px-10 py-4">
-          <img
-            src="/melt_logo.png"
-            alt="MELT"
-            className="h-6 w-auto brightness-0 invert"
-          />
-          <span className="font-mono text-sm text-[#c7eff9]/50 uppercase tracking-tight">
-            / P.01
-          </span>
-        </div>
-
-        {/* Dashed crosshair lines — edge to edge, crossing at panel corners to form + marks */}
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 z-10 hidden sm:block">
-          {/* Top horizontal line — aligns with top of panels */}
-          <div className="absolute top-[60px] left-0 right-0 border-t border-dashed border-[#c7eff9]/20" />
-          {/* Bottom horizontal line — aligns with bottom of panels */}
-          <div className="absolute bottom-[44px] left-0 right-0 border-t border-dashed border-[#c7eff9]/20" />
-          {/* Left vertical line */}
-          <div className="absolute left-[20px] top-0 bottom-0 border-l border-dashed border-[#c7eff9]/20" />
-          {/* Right vertical line */}
-          <div className="absolute right-[20px] top-0 bottom-0 border-l border-dashed border-[#c7eff9]/20" />
-          {/* Plus icons at intersections — centered exactly on crossing points */}
-          <span className="absolute top-[60px] left-[20px] flex h-0 w-0 items-center justify-center text-[#c7eff9]/70 text-xl font-mono font-thin leading-none select-none">+</span>
-          <span className="absolute top-[60px] right-[20px] flex h-0 w-0 items-center justify-center text-[#c7eff9]/70 text-xl font-mono font-thin leading-none select-none">+</span>
-          <span className="absolute bottom-[44px] left-[20px] flex h-0 w-0 items-center justify-center text-[#c7eff9]/70 text-xl font-mono font-thin leading-none select-none">+</span>
-          <span className="absolute bottom-[44px] right-[20px] flex h-0 w-0 items-center justify-center text-[#c7eff9]/70 text-xl font-mono font-thin leading-none select-none">+</span>
-        </div>
-
-        {/* Main two-panel layout */}
-        <div className="relative px-8 flex-1 min-h-0">
-          <div className="flex flex-col lg:flex-row h-full">
+      <MeltCard
+        pageNumber={1}
+        footerLeft="/ Jan 10,2026"
+        footerRight="/ VOL 1.0"
+      >
+        <div className="flex flex-col lg:flex-row h-full">
           {/* Left panel wrapper — padding reveals dark bg around card */}
           <div className="w-full lg:w-[37%] shrink-0 py-3">
             <div className="bg-[#C7EFF9] h-full flex flex-col items-center justify-between py-8 px-4 sm:py-10 sm:px-6 xl:py-20 xl:px-10 relative overflow-hidden">
@@ -205,18 +169,7 @@ function InvitationContent() {
             </div>
           </div>
         </div>
-        </div>
-
-        {/* Footer */}
-        <div className="flex items-center justify-between px-4 sm:px-6 lg:px-10 py-4">
-          <span className="font-mono text-sm text-[#c7eff9]/50 uppercase tracking-tight">
-            / Jan 10,2026
-          </span>
-          <span className="font-mono text-sm text-[#c7eff9]/50 uppercase tracking-tight">
-            / VOL 1.0
-          </span>
-        </div>
-      </div>
+      </MeltCard>
     </div>
   );
 }

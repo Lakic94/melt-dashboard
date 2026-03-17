@@ -6,6 +6,7 @@ interface MeltCardProps {
   footerRight: string;
   children: React.ReactNode;
   className?: string;
+  backgroundImage?: string;
 }
 
 export function MeltCard({
@@ -14,6 +15,7 @@ export function MeltCard({
   footerRight,
   children,
   className,
+  backgroundImage,
 }: MeltCardProps) {
   const pageLabel = `/ P.${String(pageNumber).padStart(2, "0")}`;
 
@@ -24,13 +26,38 @@ export function MeltCard({
         className
       )}
     >
-      {/* Stars background texture */}
+      {/* Optional background image with gradient overlay */}
+      {backgroundImage && (
+        <div aria-hidden="true" className="absolute inset-0 pointer-events-none overflow-hidden">
+          <img
+            src={backgroundImage}
+            alt=""
+            className="absolute max-w-none"
+            style={{
+              width: "245%",
+              height: "158%",
+              left: "-72.5%",
+              top: "-16%",
+            }}
+          />
+          {/* 60% uniform dark overlay + top-to-bottom gradient fade */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "linear-gradient(to bottom, rgb(2,6,35) 0%, rgba(2,6,35,0) 100%), rgba(2,6,35,0.6)",
+            }}
+          />
+        </div>
+      )}
+
+      {/* Stars background texture — z-20 above content, screen blend to drop the black */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 opacity-25 pointer-events-none"
+        className="absolute inset-0 z-20 pointer-events-none mix-blend-screen"
         style={{
           backgroundImage: "url('/images/background_stars.png')",
-          backgroundSize: "300px 200px",
+          backgroundSize: "cover",
           backgroundPosition: "top left",
         }}
       />
@@ -76,7 +103,7 @@ export function MeltCard({
       </div>
 
       {/* Content area */}
-      <div className="relative px-8 flex-1 min-h-0">{children}</div>
+      <div className="relative px-8 flex-1 min-h-0 flex flex-col">{children}</div>
 
       {/* Footer */}
       <div className="flex items-center justify-between px-4 sm:px-6 lg:px-10 h-[60px]">

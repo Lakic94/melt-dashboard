@@ -8,48 +8,50 @@ export function VoyageCard() {
       footerRight="/ VOL 1.0"
     >
       <div className="flex flex-col lg:flex-row flex-1 min-h-0">
-        {/* Left panel — ship photo with side notches */}
-        <div className="w-full lg:w-1/2 shrink-0 py-3 pl-3">
-          <div className="h-full relative overflow-hidden">
+        {/* Top/left panel — ship photo with side notches */}
+        <div className="w-full shrink-0 lg:w-1/2 lg:py-3 lg:pl-3">
+          <div className="h-[317px] lg:h-full relative overflow-hidden">
             <img
               src="/images/voyage-ship.jpg"
               alt="Expedition vessel in Arctic ice waters"
               className="object-cover w-full h-full"
             />
-            {/* Left side notch */}
-            <div className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[60px] h-[60px] rounded-full bg-[#020623]" />
-            {/* Right side notch */}
-            <div className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 w-[60px] h-[60px] rounded-full bg-[#020623]" />
+            {/* Mobile notches — right side only (left is clipped by card edge) */}
+            <div className="absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#020623] lg:hidden" />
+            <div className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-[#020623] lg:hidden" />
+            {/* Desktop notches */}
+            <div className="hidden lg:block absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[60px] h-[60px] rounded-full bg-[#020623]" />
+            <div className="hidden lg:block absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 w-[60px] h-[60px] rounded-full bg-[#020623]" />
           </div>
         </div>
 
-        {/* Right panel — dark text content */}
-        <div className="flex-1 py-3 pr-0">
-          <div className="bg-[#020623] h-full flex flex-col justify-start pt-[60px] pb-[40px] px-8 lg:px-12 xl:px-[120px]">
+        {/* Bottom/right panel — dark text content */}
+        <div className="flex-1 lg:py-3 lg:pr-0">
+          <div className="bg-transparent lg:bg-[#020623] h-full flex flex-col justify-start pt-8 pb-10 px-4 lg:pt-[60px] lg:pb-[40px] lg:px-12 xl:px-[120px]">
             {/* Label */}
-            <div className="flex items-center gap-4 mb-6">
+            <div className="flex items-center gap-3 mb-4 lg:gap-4 lg:mb-6">
               <svg
-                width="12"
-                height="8"
-                viewBox="0 0 12 10"
+                width="9"
+                height="6"
+                viewBox="0 0 9 6"
                 fill="none"
                 className="shrink-0"
               >
-                <path d="M6 0L11.1962 9.75H0.803848L6 0Z" fill="#E96A35" />
+                <path d="M4.5 0L8.39711 6H0.602886L4.5 0Z" fill="#E96A35" />
               </svg>
-              <span className="font-mono text-sm text-[#E96A35] uppercase tracking-tight font-medium">
+              <span className="font-mono text-xs lg:text-sm text-[#E96A35] uppercase tracking-[-0.12px] font-medium">
                 The Expedition
               </span>
             </div>
 
             {/* Heading */}
-            <h2 className="font-sans text-3xl sm:text-4xl lg:text-5xl xl:text-7xl 2xl:text-[80px] text-[#c7eff9] leading-[0.95] tracking-[-0.05em] mb-8">
+            <h2 className="font-sans text-[40px] lg:text-5xl xl:text-7xl 2xl:text-[80px] text-[#c7eff9] leading-[1.05] tracking-[-1.2px] lg:tracking-[-0.05em] mb-8">
               We&apos;re launching our{" "}
               <span className="italic">Maiden Voyage.</span>
             </h2>
 
             {/* Body copy */}
-            <div className="space-y-6 font-[family-name:var(--font-gt-era)] text-lg tracking-[-0.72px] leading-relaxed pt-8">
+            <div className="space-y-4 lg:space-y-6 font-[family-name:var(--font-gt-era)] text-base lg:text-lg tracking-[-0.32px] lg:tracking-[-0.72px] leading-[1.6] lg:leading-relaxed pt-0 lg:pt-8">
               <p className="text-[#c7eff9]/70">
                 This July, we&apos;re launching our Maiden Voyage — an
                 expedition to the Arctic to collect glacial meltwater from a

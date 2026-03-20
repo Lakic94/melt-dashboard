@@ -96,7 +96,7 @@ export function RequirementsCard() {
               {bottomDetails.map((item) => (
                 <div
                   key={item.label}
-                  className="flex flex-col gap-2 items-center text-center w-[248px]"
+                  className="flex flex-col gap-2 items-center text-center w-full max-w-[248px]"
                 >
                   <p className="font-mono text-sm text-[#020623]/50 uppercase tracking-[-0.14px] font-medium leading-[1.6]">
                     {item.label}

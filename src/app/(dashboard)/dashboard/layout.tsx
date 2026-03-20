@@ -178,7 +178,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       </aside>
 
       {/* Main content */}
-      <main className="flex min-h-screen flex-1 flex-col pl-0 lg:pl-[220px]">
+      <main className="flex min-h-screen flex-1 flex-col pl-0 lg:pl-[220px] overflow-x-hidden">
         {/* Page header — greeting style */}
         <div className="px-4 pt-18 pb-4 sm:px-6 lg:px-10 lg:pt-10 lg:pb-6">
           <h1 className="text-2xl font-semibold text-foreground">

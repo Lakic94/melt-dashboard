@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -n \"px-7\\\\|px-8\\\\|px-4\" /Users/nikolalakic/Desktop/melt-dashboard/src/components/*.tsx)",
+      "Bash(cat /Users/nikolalakic/Desktop/melt-dashboard/src/app/\\\\\\(dashboard\\\\\\)/dashboard/layout.tsx)"
+    ]
+  }
+}

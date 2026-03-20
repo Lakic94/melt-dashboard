@@ -78,26 +78,26 @@ export function MeltCard({
         {/* Bottom horizontal line */}
         <div className="absolute bottom-[62px] sm:bottom-[60px] left-0 right-0 border-t border-dashed border-[#c7eff9]/20" />
         {/* Left vertical line */}
-        <div className="absolute left-[12px] sm:left-[20px] top-0 bottom-0 border-l border-dashed border-[#c7eff9]/20" />
+        <div className="absolute left-[20px] sm:left-[24px] top-0 bottom-0 border-l border-dashed border-[#c7eff9]/20" />
         {/* Right vertical line */}
-        <div className="absolute right-[12px] sm:right-[20px] top-0 bottom-0 border-l border-dashed border-[#c7eff9]/20" />
+        <div className="absolute right-[20px] sm:right-[24px] top-0 bottom-0 border-l border-dashed border-[#c7eff9]/20" />
         {/* Plus icons at intersections */}
-        <span className="absolute top-[64px] sm:top-[60px] left-[12px] sm:left-[20px] flex h-0 w-0 items-center justify-center text-[#c7eff9]/70 text-xl font-mono font-thin leading-none select-none">
+        <span className="absolute top-[64px] sm:top-[60px] left-[20px] sm:left-[24px] flex h-0 w-0 items-center justify-center text-[#c7eff9]/70 text-xl font-mono font-thin leading-none select-none">
           +
         </span>
-        <span className="absolute top-[64px] sm:top-[60px] right-[12px] sm:right-[20px] flex h-0 w-0 items-center justify-center text-[#c7eff9]/70 text-xl font-mono font-thin leading-none select-none">
+        <span className="absolute top-[64px] sm:top-[60px] right-[20px] sm:right-[24px] flex h-0 w-0 items-center justify-center text-[#c7eff9]/70 text-xl font-mono font-thin leading-none select-none">
           +
         </span>
-        <span className="absolute bottom-[62px] sm:bottom-[60px] left-[12px] sm:left-[20px] flex h-0 w-0 items-center justify-center text-[#c7eff9]/70 text-xl font-mono font-thin leading-none select-none">
+        <span className="absolute bottom-[62px] sm:bottom-[60px] left-[20px] sm:left-[24px] flex h-0 w-0 items-center justify-center text-[#c7eff9]/70 text-xl font-mono font-thin leading-none select-none">
           +
         </span>
-        <span className="absolute bottom-[62px] sm:bottom-[60px] right-[12px] sm:right-[20px] flex h-0 w-0 items-center justify-center text-[#c7eff9]/70 text-xl font-mono font-thin leading-none select-none">
+        <span className="absolute bottom-[62px] sm:bottom-[60px] right-[20px] sm:right-[24px] flex h-0 w-0 items-center justify-center text-[#c7eff9]/70 text-xl font-mono font-thin leading-none select-none">
           +
         </span>
       </div>
 
       {/* Content area — pt/pb creates gap from dashed lines on mobile */}
-      <div className="relative px-8 pt-3 pb-2 lg:pt-0 lg:pb-0 flex-1 min-h-0 flex flex-col">{children}</div>
+      <div className="relative px-8 sm:px-10 lg:px-12 pt-3 pb-2 lg:pt-0 lg:pb-0 flex-1 min-h-0 flex flex-col">{children}</div>
 
       {/* Footer */}
       <div className="flex items-center justify-between px-6 lg:px-10 h-[60px] shrink-0">
